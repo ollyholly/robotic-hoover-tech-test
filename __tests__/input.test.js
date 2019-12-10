@@ -1,6 +1,8 @@
 const Input = require('../src/input');
 
 describe('Input', () => {
+  describe('#getInput', () => {});
+
   describe('#ParseInput', () => {
     test('Data from input file parsed correctly', () => {
       const data = ['5 5', '1 2', '1 0', '2 2', 'NNESEESWNWW'];

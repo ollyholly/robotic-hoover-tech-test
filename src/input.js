@@ -1,12 +1,5 @@
 const fs = require('fs');
 
-// const getInput = () => {
-//   fs.readFile('../public/input.txt', (err, f) => {
-//     const data = f.toString().split('\n');
-//     return data;
-//   });
-// };
-// const getInput = async (error, result) => {};
 const parseInput = (data) => {
   const roomD = data.shift().split(' ');
   const initialP = data.shift().split(' ');
@@ -27,8 +20,18 @@ const parseInput = (data) => {
   return result;
 };
 
-// const getOutput = () => {};
+const getInput = () => {
+  fs.readFile('../public/input.txt', (err, f) => {
+    if (err) {
+      throw err;
+    }
+    const data = f.toString().split('\n');
+    console.log(data);
+    const result = parseInput(data);
+    console.log(result);
+    return result;
+  });
+};
 
-// exports.getInput = getInput;
+exports.getInput = getInput;
 exports.parseInput = parseInput;
-// exports.getOutput = getOutput;
