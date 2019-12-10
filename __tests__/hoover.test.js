@@ -3,9 +3,24 @@ const Hoover = require('../src/hoover');
 describe('Hoover', () => {
   let hoover;
 
+  // describe('Starting conditions', () => {
+  //   hoover = new Hoover({
+  //     xPosition: 1,
+  //     yPosition: 2,
+  // xRoomDimension: 5,
+  // yRoomDimension: 5
+  //   });
+
+  // });
+
   describe('#Move', () => {
     beforeEach(() => {
-      hoover = new Hoover({ xPosition: 0, yPosition: 0 });
+      hoover = new Hoover({
+        xPosition: 0,
+        yPosition: 0,
+        xRoomDimension: 2,
+        yRoomDimension: 2,
+      });
     });
 
     test('A hoover can move North and its yPosition increases by 1', () => {
@@ -26,6 +41,11 @@ describe('Hoover', () => {
 
     test('A hoover can move West and its xPosition decreases by 1', () => {
       hoover.move('E');
+      hoover.move('W');
+      expect(hoover.xPosition).toEqual(0);
+    });
+
+    test('If hoover moves West towards the wall, its position doesnt change', () => {
       hoover.move('W');
       expect(hoover.xPosition).toEqual(0);
     });
