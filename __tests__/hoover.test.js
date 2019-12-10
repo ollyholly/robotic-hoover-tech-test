@@ -5,10 +5,8 @@ describe('Hoover', () => {
 
   beforeEach(() => {
     hoover = new Hoover({
-      xPosition: 0,
-      yPosition: 0,
-      xRoomDimension: 2,
-      yRoomDimension: 2,
+      initialPosition: { x: 0, y: 0 },
+      roomDimensions: { x: 2, y: 2 },
       dirtPatchMap: [
         { x: 1, y: 0 },
         { x: 1, y: 1 },
@@ -99,8 +97,8 @@ describe('Hoover', () => {
   describe('#isDirtPatch', () => {
     test('Checks if the the current position has a dirt patch, if true removes from the map', () => {
       const hoover1 = new Hoover({
-        xPosition: 1,
-        yPosition: 2,
+        initialPosition: { x: 1, y: 2 },
+        roomDimensions: { x: 2, y: 2 },
         dirtPatchMap: [
           { x: 1, y: 2 },
           { x: 3, y: 3 },

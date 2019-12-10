@@ -4,6 +4,7 @@ const Input = require('../src/input');
 
 const cleanUp = () => {
   const inputData = Input.getInput();
+  console.log(inputData);
   const hoover = new Hoover(inputData);
 
   hoover.followInstructions();
@@ -11,5 +12,7 @@ const cleanUp = () => {
 
   Output.writeOutput(report);
 };
+
+cleanUp();
 
 exports.cleanUp = cleanUp;

@@ -1,13 +1,22 @@
 class Hoover {
   constructor(args) {
-    this.xPosition = args.xPosition;
-    this.yPosition = args.yPosition;
-    this.xRoomDimension = args.xRoomDimension;
-    this.yRoomDimension = args.yRoomDimension;
+    this.xPosition = args.initialPosition.x;
+    this.yPosition = args.initialPosition.y;
+    this.xRoomDimension = args.roomDimensions.x;
+    this.yRoomDimension = args.roomDimensions.y;
     this.dirtPatchMap = args.dirtPatchMap;
     this.instructions = args.instructions;
     this.dirtPatchCleaned = 0;
   }
+  // constructor(args) {
+  //   this.xPosition = args.xPosition;
+  //   this.yPosition = args.yPosition;
+  //   this.xRoomDimension = args.xRoomDimension;
+  //   this.yRoomDimension = args.yRoomDimension;
+  //   this.dirtPatchMap = args.dirtPatchMap;
+  //   this.instructions = args.instructions;
+  //   this.dirtPatchCleaned = 0;
+  // }
 
   move(direction) {
     switch (direction) {
