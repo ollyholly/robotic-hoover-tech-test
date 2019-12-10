@@ -147,6 +147,7 @@ some examples + screenshots
 - given coordinates are not integers
 - given coordinates are outside of the map
 - room coordinates can not be less than 1
+- check if the data not received
 
 
 ### Classes
@@ -154,3 +155,8 @@ some examples + screenshots
 - hoover – handles hoover position and movement
 - dirt patches – handle map of dirt patches and cleaned spaces
 - io - reads input file, parses input, writes into the output file
+
+hoover = new Hoover(data)
+hoover.followInstructions()
+result = hoover.getReport()
+io.output(result)
