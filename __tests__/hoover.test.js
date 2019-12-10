@@ -3,16 +3,21 @@ const Hoover = require('../src/hoover');
 describe('Hoover', () => {
   let hoover;
 
-  describe('#Move', () => {
-    beforeEach(() => {
-      hoover = new Hoover({
-        xPosition: 0,
-        yPosition: 0,
-        xRoomDimension: 2,
-        yRoomDimension: 2,
-      });
+  beforeEach(() => {
+    hoover = new Hoover({
+      xPosition: 0,
+      yPosition: 0,
+      xRoomDimension: 2,
+      yRoomDimension: 2,
+      dirtPatchMap: [
+        { x: 1, y: 0 },
+        { x: 1, y: 1 },
+      ],
+      instructions: 'EEN',
     });
+  });
 
+  describe('#Move', () => {
     test('A hoover can move North and its yPosition increases by 1', () => {
       hoover.move('N');
       expect(hoover.yPosition).toEqual(1);
@@ -59,19 +64,6 @@ describe('Hoover', () => {
   });
 
   describe('#Clean', () => {
-    beforeEach(() => {
-      hoover = new Hoover({
-        xPosition: 0,
-        yPosition: 0,
-        xRoomDimension: 2,
-        yRoomDimension: 2,
-        dirtPatchMap: [
-          { x: 1, y: 0 },
-          { x: 1, y: 1 },
-        ],
-      });
-    });
-
     test('When hoover passes a dirt patch, it cleans it', () => {
       hoover.move('E');
       hoover.clean();
@@ -81,20 +73,6 @@ describe('Hoover', () => {
   });
 
   describe('#Drive', () => {
-    beforeEach(() => {
-      hoover = new Hoover({
-        xPosition: 0,
-        yPosition: 0,
-        xRoomDimension: 2,
-        yRoomDimension: 2,
-        dirtPatchMap: [
-          { x: 1, y: 0 },
-          { x: 1, y: 1 },
-        ],
-        instructions: 'EEN',
-      });
-    });
-
     test('A hoover follows the instructions moving and cleaning dirt patches', () => {
       hoover.drive();
       expect(hoover.dirtPatchCleaned).toEqual(2);
@@ -106,20 +84,6 @@ describe('Hoover', () => {
   });
 
   describe('#getReport', () => {
-    beforeEach(() => {
-      hoover = new Hoover({
-        xPosition: 0,
-        yPosition: 0,
-        xRoomDimension: 2,
-        yRoomDimension: 2,
-        dirtPatchMap: [
-          { x: 1, y: 0 },
-          { x: 1, y: 1 },
-        ],
-        instructions: 'EEN',
-      });
-    });
-
     test('After following instruction return final position and number of cleaned dirt patches', () => {
       hoover.drive();
       const result = {
