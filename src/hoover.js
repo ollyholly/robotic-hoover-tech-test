@@ -9,18 +9,16 @@ class Hoover {
   move(direction) {
     switch (direction) {
       case 'N':
-        this.yPosition += 1;
+        if (this.yPosition < this.yRoomDimension - 1) this.yPosition += 1;
         break;
       case 'S':
-        this.yPosition -= 1;
+        if (this.yPosition > 0) this.yPosition -= 1;
         break;
       case 'E':
-        this.xPosition += 1;
+        if (this.xPosition < this.xRoomDimension - 1) this.xPosition += 1;
         break;
       case 'W':
-        if (this.xPosition > 0) {
-          this.xPosition -= 1;
-        }
+        if (this.xPosition > 0) this.xPosition -= 1;
         break;
       default:
         break;

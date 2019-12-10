@@ -49,5 +49,22 @@ describe('Hoover', () => {
       hoover.move('W');
       expect(hoover.xPosition).toEqual(0);
     });
+
+    test('If hoover moves East towards the wall, its position doesnt change', () => {
+      hoover.move('E');
+      hoover.move('E');
+      expect(hoover.xPosition).toEqual(1);
+    });
+
+    test('If hoover moves South towards the wall, its position doesnt change', () => {
+      hoover.move('S');
+      expect(hoover.yPosition).toEqual(0);
+    });
+
+    test('If hoover moves North towards the wall, its position doesnt change', () => {
+      hoover.move('N');
+      hoover.move('N');
+      expect(hoover.yPosition).toEqual(1);
+    });
   });
 });
