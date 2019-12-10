@@ -21,16 +21,14 @@ const parseInput = (data) => {
 };
 
 const getInput = () => {
-  fs.readFile('../public/input.txt', (err, f) => {
+  const fileData = fs.readFileSync('input.txt', 'utf8', (err, f) => {
     if (err) {
       throw err;
     }
-    const data = f.toString().split('\n');
-    console.log(data);
-    const result = parseInput(data);
-    console.log(result);
-    return result;
   });
+  const convertedData = fileData.toString().split('\n');
+  const result = parseInput(convertedData);
+  return result;
 };
 
 exports.getInput = getInput;

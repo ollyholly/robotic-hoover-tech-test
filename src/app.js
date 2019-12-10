@@ -4,7 +4,7 @@ const Input = require('../src/input');
 
 const cleanUp = () => {
   const inputData = Input.getInput();
-  console.log(inputData);
+  console.log('app input data: ', inputData);
   const hoover = new Hoover(inputData);
 
   hoover.followInstructions();
