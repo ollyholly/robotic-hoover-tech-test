@@ -72,9 +72,9 @@ describe('Hoover', () => {
     });
   });
 
-  describe('#Drive', () => {
+  describe('#FollowInstructions', () => {
     test('A hoover follows the instructions moving and cleaning dirt patches', () => {
-      hoover.drive();
+      hoover.followInstructions();
       expect(hoover.dirtPatchCleaned).toEqual(2);
       expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 0 });
       expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 1 });
@@ -85,7 +85,7 @@ describe('Hoover', () => {
 
   describe('#getReport', () => {
     test('After following instruction return final position and number of cleaned dirt patches', () => {
-      hoover.drive();
+      hoover.followInstructions();
       const result = {
         dirtPatchCleaned: 2,
         finalPosition: {
@@ -94,6 +94,20 @@ describe('Hoover', () => {
         },
       };
       expect(hoover.getReport()).toEqual(result);
+    });
+  });
+  describe('#isDirtPatch', () => {
+    test('Checks if the the current position has a dirt patch, if true removes from the map', () => {
+      const hoover1 = new Hoover({
+        xPosition: 1,
+        yPosition: 2,
+        dirtPatchMap: [
+          { x: 1, y: 2 },
+          { x: 3, y: 3 },
+        ],
+      });
+      expect(hoover1.isDirtPatch()).toEqual(true);
+      expect(hoover1.dirtPatchMap).toEqual([{ x: 3, y: 3 }]);
     });
   });
 });

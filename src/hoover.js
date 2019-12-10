@@ -29,22 +29,15 @@ class Hoover {
   }
 
   clean() {
-    this.dirtPatchMap.map((patch) => {
-      if (patch.x === this.xPosition && patch.y === this.yPosition) {
-        this.dirtPatchMap = this.dirtPatchMap.filter(
-          (item) => item.x === this.xPosition && item.y === this.yPosition,
-        );
-        this.dirtPatchCleaned += 1;
-      }
-    });
+    this.dirtPatchCleaned += 1;
   }
 
-  drive() {
+  followInstructions() {
     const string = this.instructions;
     for (let i = 0; i < string.length; i++) {
       const direction = string.charAt(i);
       this.move(direction);
-      this.clean();
+      if (this.isDirtPatch()) this.clean();
     }
   }
 
@@ -56,6 +49,17 @@ class Hoover {
         y: this.yPosition,
       },
     };
+  }
+
+  isDirtPatch() {
+    for (let i = 0; i < this.dirtPatchMap.length; i++) {
+      const patch = this.dirtPatchMap[i];
+      if (patch.x === this.xPosition && patch.y === this.yPosition) {
+        this.dirtPatchMap.splice(i, 1);
+        return true;
+      }
+    }
+    return false;
   }
 }
 
