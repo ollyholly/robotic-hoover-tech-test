@@ -5,6 +5,7 @@ class Hoover {
     this.xRoomDimension = args.xRoomDimension;
     this.yRoomDimension = args.yRoomDimension;
     this.dirtPatchMap = args.dirtPatchMap;
+    this.instructions = args.instructions;
     this.dirtPatchCleaned = 0;
   }
 
@@ -28,11 +29,23 @@ class Hoover {
   }
 
   clean() {
-    this.dirtPatchMap = this.dirtPatchMap.filter(
-      (patch) => patch.x !== this.xPosition && patch.y !== this.yPosition,
-    );
-    console.log(this.dirtPatchMap);
-    this.dirtPatchCleaned += 1;
+    this.dirtPatchMap.map((patch) => {
+      if (patch.x === this.xPosition && patch.y === this.yPosition) {
+        this.dirtPatchMap = this.dirtPatchMap.filter(
+          (item) => item.x === this.xPosition && item.y === this.yPosition,
+        );
+        this.dirtPatchCleaned += 1;
+      }
+    });
+  }
+
+  drive() {
+    const string = this.instructions;
+    for (let i = 0; i < string.length; i++) {
+      const direction = string.charAt(i);
+      this.move(direction);
+      this.clean();
+    }
   }
 }
 

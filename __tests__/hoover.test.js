@@ -75,7 +75,10 @@ describe('Hoover', () => {
         yPosition: 0,
         xRoomDimension: 2,
         yRoomDimension: 2,
-        dirtPatchMap: [{ x: 1, y: 0 }],
+        dirtPatchMap: [
+          { x: 1, y: 0 },
+          { x: 1, y: 1 },
+        ],
       });
     });
 
@@ -84,6 +87,30 @@ describe('Hoover', () => {
       hoover.clean();
       expect(hoover.dirtPatchCleaned).toEqual(1);
       expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 0 });
+    });
+  });
+  describe('#Drive', () => {
+    beforeEach(() => {
+      hoover = new Hoover({
+        xPosition: 0,
+        yPosition: 0,
+        xRoomDimension: 2,
+        yRoomDimension: 2,
+        dirtPatchMap: [
+          { x: 1, y: 0 },
+          { x: 1, y: 1 },
+        ],
+        instructions: 'EEN',
+      });
+    });
+
+    test('A hoover follows the instructions moving and cleaning dirt patches', () => {
+      hoover.drive();
+      expect(hoover.dirtPatchCleaned).toEqual(2);
+      expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 0 });
+      expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 1 });
+      expect(hoover.xPosition).toEqual(1);
+      expect(hoover.yPosition).toEqual(1);
     });
   });
 });
