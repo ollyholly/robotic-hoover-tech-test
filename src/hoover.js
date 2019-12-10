@@ -47,6 +47,16 @@ class Hoover {
       this.clean();
     }
   }
+
+  getReport() {
+    return {
+      dirtPatchCleaned: this.dirtPatchCleaned,
+      finalPosition: {
+        x: this.xPosition,
+        y: this.yPosition,
+      },
+    };
+  }
 }
 
 module.exports = Hoover;

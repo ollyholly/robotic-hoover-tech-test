@@ -3,16 +3,6 @@ const Hoover = require('../src/hoover');
 describe('Hoover', () => {
   let hoover;
 
-  // describe('Starting conditions', () => {
-  //   hoover = new Hoover({
-  //     xPosition: 1,
-  //     yPosition: 2,
-  // xRoomDimension: 5,
-  // yRoomDimension: 5
-  //   });
-
-  // });
-
   describe('#Move', () => {
     beforeEach(() => {
       hoover = new Hoover({
@@ -89,6 +79,7 @@ describe('Hoover', () => {
       expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 0 });
     });
   });
+
   describe('#Drive', () => {
     beforeEach(() => {
       hoover = new Hoover({
@@ -111,6 +102,34 @@ describe('Hoover', () => {
       expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 1 });
       expect(hoover.xPosition).toEqual(1);
       expect(hoover.yPosition).toEqual(1);
+    });
+  });
+
+  describe('#getReport', () => {
+    beforeEach(() => {
+      hoover = new Hoover({
+        xPosition: 0,
+        yPosition: 0,
+        xRoomDimension: 2,
+        yRoomDimension: 2,
+        dirtPatchMap: [
+          { x: 1, y: 0 },
+          { x: 1, y: 1 },
+        ],
+        instructions: 'EEN',
+      });
+    });
+
+    test('After following instruction return final position and number of cleaned dirt patches', () => {
+      hoover.drive();
+      const result = {
+        dirtPatchCleaned: 2,
+        finalPosition: {
+          x: 1,
+          y: 1,
+        },
+      };
+      expect(hoover.getReport()).toEqual(result);
     });
   });
 });
