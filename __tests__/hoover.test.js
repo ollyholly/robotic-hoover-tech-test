@@ -67,4 +67,23 @@ describe('Hoover', () => {
       expect(hoover.yPosition).toEqual(1);
     });
   });
+
+  describe('#Clean', () => {
+    beforeEach(() => {
+      hoover = new Hoover({
+        xPosition: 0,
+        yPosition: 0,
+        xRoomDimension: 2,
+        yRoomDimension: 2,
+        dirtPatchMap: [{ x: 1, y: 0 }],
+      });
+    });
+
+    test('When hoover passes a dirt patch, it cleans it', () => {
+      hoover.move('E');
+      hoover.clean();
+      expect(hoover.dirtPatchCleaned).toEqual(1);
+      expect(hoover.dirtPatchMap).not.toContain({ x: 1, y: 0 });
+    });
+  });
 });

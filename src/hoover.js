@@ -4,6 +4,8 @@ class Hoover {
     this.yPosition = args.yPosition;
     this.xRoomDimension = args.xRoomDimension;
     this.yRoomDimension = args.yRoomDimension;
+    this.dirtPatchMap = args.dirtPatchMap;
+    this.dirtPatchCleaned = 0;
   }
 
   move(direction) {
@@ -23,6 +25,14 @@ class Hoover {
       default:
         break;
     }
+  }
+
+  clean() {
+    this.dirtPatchMap = this.dirtPatchMap.filter(
+      (patch) => patch.x !== this.xPosition && patch.y !== this.yPosition,
+    );
+    console.log(this.dirtPatchMap);
+    this.dirtPatchCleaned += 1;
   }
 }
 
