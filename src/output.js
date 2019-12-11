@@ -13,6 +13,7 @@ const writeOutput = (data) => {
       throw err;
     }
     console.log(result);
+    console.log('Cleaning report saved.');
   });
 };
 
