@@ -2,8 +2,9 @@
 
 A program that navigates an imaginary robotic hoover through an imaginary room based on imaginary instructions.
 
-<p>
-[Specifications](#specifications) | [How to Install](#howtoinstall) | [How to use](#howtouse) | [Tech Stack](#techstack) | [Approach](#approach) | [Example Output](#example) | [Tests](#test) | [Detailed instructions](#instructions)
+<p align="center">
+		 
+[Specification](#specifications) | [How to Install](#how-to-install) | [How to Use](#how-to-use) | [Approach](#approach) | [Tests](#tests) | [Demo](#demo) | [Detailed Instructions](#detailed-instructions) |
 </p>
 
 ## Specifications
@@ -121,9 +122,13 @@ npx jest --coverage
 ![Tests](./public/tests.png)<br><br>
 ![Test Coverage](./public/coverage.png)
 
-## Example Output
+<br><br>
+
+## Demo
 
 ![Output](./public/output.png)
+
+<br><br>
 
 ## Detailed instructions
 
