@@ -39,6 +39,7 @@ class Hoover {
       this.move(direction);
       if (this.isDirtPatch()) this.clean();
     }
+    console.log('Cleaning complete! Beep!\n\n');
   }
 
   getReport() {
