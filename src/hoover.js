@@ -24,6 +24,7 @@ class Hoover {
         if (this.xPosition > 0) this.xPosition -= 1;
         break;
       default:
+        console.log('Error: Wrong instruction!');
         break;
     }
   }

@@ -1,7 +1,7 @@
-const Hoover = require('../src/hoover');
-const Output = require('../src/output');
-const Input = require('../src/input');
-const Printer = require('../src/printer');
+const Hoover = require('./src/hoover');
+const Output = require('./src/output');
+const Input = require('./src/input');
+const Printer = require('./src/printer');
 
 const cleanUp = () => {
   Printer.printGreeting();

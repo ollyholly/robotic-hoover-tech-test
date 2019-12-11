@@ -1,4 +1,131 @@
-# Robotic Hoover Tech Test
+# 🤖 🧹 Robotic Hoover
+
+A program that navigates an imaginary robotic hoover through an imaginary room based on imaginary instructions.
+
+<p>
+[Specifications](#specifications) | [How to Install](#howtoinstall) | [How to use](#howtouse) | [Tech Stack](#techstack) | [Approach](#approach) | [Example Output](#example) | [Tests](#test) | [Detailed instructions](#instructions)
+</p>
+
+## Specifications
+
+#### Input:
+
+- The room dimensions (X,Y)
+- The initial hoover position (X,Y).
+- Coordinates of dirt patches (X,Y).
+- Driving instructions.
+- Input should be read from a text file residing in the same folder as the app file
+- Retrieve the input file that is hosted remotely (not implemented).
+
+Example input (input.txt):
+
+```
+5 5
+1 2
+1 0
+2 2
+2 3
+NNESEESWNWW
+```
+
+#### Output:
+
+- The final hoover position (X,Y).
+- The number of patches of dirt the hoover cleaned up.
+- The programme output is printed to the standard output of the terminal
+- Output should be written to a text file so it can automatically be checked
+
+Example output:
+
+```
+1 3
+1
+```
+
+<br><br>
+
+## How to Install
+
+```
+git clone git@github.com:ollyholly/robotic-hoover-tech-test.git
+cd robotic-hoover-tech-test
+npm install
+```
+
+<br><br>
+
+## How to Use
+
+In command line run `npm start`
+
+<br><br>
+
+## Approach
+
+### Planning
+
+- Start with hardcoded input
+- Initialise a hoover with room dimensions, starting position, a dirt patch map & driving instructions.
+- Hoover can move NWSE and its position changes
+- Hoover moves based on the provided driving instructions
+- When hoover reaches a wall and moves towards it, hoover position doesn't change
+- When hoover passes a dirt patch, dirt count increases, dirt patch location is removed from the map
+- When hoover finishes its program it returns the last position and the dirt count
+- Read input from a local input.txt file
+- Parse input and set up the hoover
+- Read input from a remote file
+- Write output to a text file
+- Improve user interface
+
+### Modules
+
+- App – uses other modules to run cleaning protocol
+- Hoover – handles hoover position, movement & clean-up
+- Input - reads the input file, parses input, writes into the output file
+- Output - parses data for the output, writes into the output file
+- Printer – provides enjoyable user experience
+- Dirt patches (considered, not implemented) – handles map of dirt patches and cleaned spaces
+
+### Edge cases and errors (🚧 not implemented)
+
+- When instructed to move towards the wall, hoover stays in place ✅
+- Unrecognizable cleaning instructions ✅
+- Given coordinates are not integers 🚧
+- Given coordinates are outside of the map 🚧
+- Room dimensions can not be less than 1 🚧
+
+### Under construction 🚧
+
+- retrieve input from remote file + test
+- tests for reading input
+- tests for writing output
+- tests for App module
+  – some edge cases (see above)
+
+<br><br>
+
+## Tests
+
+To run tests type
+
+```
+npm test
+```
+
+To view test coverage run
+
+```
+npx jest --coverage
+```
+
+![Tests](./public/tests.png)<br><br>
+![Test Coverage](./public/coverage.png)
+
+## Example Output
+
+![Output](./public/output.png)
+
+## Detailed instructions
 
 A program that navigates an imaginary robotic hoover (much like a [Roomba](https://en.wikipedia.org/wiki/Roomba)) through an equally imaginary room based on:
 
@@ -61,105 +188,3 @@ Example (matching the input above):
 ```
 
 **Deliverable**: Output text file so it can automatically checked
-
-<br><br>
-
-## How to Install
-
-```
-git clone https://github.com/mattes/mars-rover-kata.git
-cd mars-rover-kata
-npm install
-```
-
-<br><br>
-
-## How to Use
-
-1. In command line run `node`
-2. Initialise the main module:
-
-```
-Rover Start
-```
-
-<br><br>
-
-## User Stories
-
-```
-As a User
-So that I do X
-I would like to do Y
-```
-
-<br><br>
-
-## Approach
-
-Every class has a single responsibility that can be described with one sentence:
-
-**Rover** is the main interface for interaction with rover.
-
-![Domain Model](./public/uml.png)
-
-<br><br>
-
-## Tests
-
-To run tests type
-
-```
-npm test
-```
-
-To view test coverage run
-
-```
-npx jest --coverage
-```
-
-![Tests](./public/tests.png)<br><br>
-![Test Coverage](./public/coverage.png)
-
-## Example Output
-
-```
-some examples + screenshots
-```
-
-## Planning
-
-### To Do
-
-- Start with hardcoded input
-- Initialise a hoover with room dimensions, starting position, a dirt patch map & driving instructions.
-- Hoover can move NWSE and its position changes
-- Hoover moves based on the provided driving instructions
-- When hoover reaches a wall and moves towards it, hoover position doesn't change
-- When hoover passes a dirt patch, dirt count increases, dirt patch location is removed from the map
-- When hoover finishes its program it returns the last position and the dirt count
-- Read input from a local input.txt file
-- Parse input and set up the hoover
-- Read input from a remote file
-- Write output to a text file
-- Improve user interface
-
-### Edge cases and errors
-
-- Given coordinates are not integers
-- Given coordinates are outside of the map
-- Room dimensions can not be less than 1
-
-### Classes
-
-- app/control – receives input, configures the hoover, passes the hoover data to the output
-- hoover – handles hoover position, movement & clean-up
-- input - reads the input file, parses input, writes into the output file
-- output - parses data for the output, writes into the output file
-  – (potentially) dirt patches – handles map of dirt patches and cleaned spaces
-
-hoover = new Hoover(data)
-hoover.followInstructions()
-result = hoover.getReport()
-io.output(result)

@@ -59,6 +59,11 @@ describe('Hoover', () => {
       hoover.move('N');
       expect(hoover.yPosition).toEqual(1);
     });
+    test('Hoover receives unrecognised instruction and logged an error.', () => {
+      global.console.log = jest.fn();
+      hoover.move('Z');
+      expect(console.log.mock.calls[0][0]).toBe('Error: Wrong instruction!');
+    });
   });
 
   describe('#Clean', () => {

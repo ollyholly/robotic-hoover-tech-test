@@ -12,6 +12,8 @@ const writeOutput = (data) => {
     if (err) {
       throw err;
     }
+    console.log('\nOUTPUT\n');
+    console.log(result);
     console.log('\nCleaning report saved! Beep!\n');
     console.log('Shutting down... Boop!\n');
   });
