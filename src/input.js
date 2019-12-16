@@ -21,7 +21,18 @@ const parseInput = (data) => {
   return result;
 };
 
-// Read file in synchronously (blocking)
+// Read file from remote source
+async function getInput() {
+  const fileData = await axios
+    .get('https://ollyholly.github.io/assets/input.txt')
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  const convertedData = fileData.toString().split('\n');
+  const result = parseInput(convertedData);
+  return result;
+}
+
+// Read file synchronously (blocking)
 // const getInput = () => {
 //   const fileData = fs.readFileSync('input.txt', 'utf8');
 //   const convertedData = fileData.toString().split('\n');
@@ -29,19 +40,7 @@ const parseInput = (data) => {
 //   return result;
 // };
 
-// Read file in asynchronously (non-blocking)
-async function getInput() {
-  const fileData = await axios
-    .get('https://ollyholly.github.io/assets/input.txt')
-    .then((res) => {
-      console.log('Got remote data!', res.data);
-      return res.data;
-    })
-    .catch((err) => console.log(err));
-  const convertedData = fileData.toString().split('\n');
-  const result = parseInput(convertedData);
-  return result;
-}
+// Read file asynchronously (non-blocking)
 // async function getInput() {
 //   const fileData = await fs.readFile('input.txt', 'utf8', (err, f) => {
 //     if (err) {
