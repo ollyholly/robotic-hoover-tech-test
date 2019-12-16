@@ -5,10 +5,10 @@ const parseOutput = (data) => {
   return result;
 };
 
-const writeOutput = (data) => {
+async function writeOutput(data) {
   const result = parseOutput(data);
 
-  fs.writeFile('output.txt', result, (err) => {
+  await fs.writeFile('output.txt', result, (err) => {
     if (err) {
       throw err;
     }
@@ -17,7 +17,7 @@ const writeOutput = (data) => {
     console.log('\nCleaning report saved! Beep!\n');
     console.log('Shutting down... Boop!\n');
   });
-};
+}
 
 exports.writeOutput = writeOutput;
 exports.parseOutput = parseOutput;
