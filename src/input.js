@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
 const parseInput = (data) => {
   const roomD = data.shift().split(' ');
@@ -20,8 +20,17 @@ const parseInput = (data) => {
   return result;
 };
 
-const getInput = () => {
-  const fileData = fs.readFileSync('input.txt', 'utf8', (err, f) => {
+// Read file in synchronously (blocking)
+// const getInput = () => {
+//   const fileData = fs.readFileSync('input.txt', 'utf8');
+//   const convertedData = fileData.toString().split('\n');
+//   const result = parseInput(convertedData);
+//   return result;
+// };
+
+// Read file in asynchronously (non-blocking)
+async function getInput() {
+  const fileData = await fs.readFile('input.txt', 'utf8', (err, f) => {
     if (err) {
       throw err;
     }
@@ -29,7 +38,7 @@ const getInput = () => {
   const convertedData = fileData.toString().split('\n');
   const result = parseInput(convertedData);
   return result;
-};
+}
 
 exports.getInput = getInput;
 exports.parseInput = parseInput;

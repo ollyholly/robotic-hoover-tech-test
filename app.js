@@ -3,10 +3,10 @@ const Output = require('./src/output');
 const Input = require('./src/input');
 const Printer = require('./src/printer');
 
-const cleanUp = () => {
+const cleanUp = async () => {
   Printer.printGreeting();
 
-  const inputData = Input.getInput();
+  const inputData = await Input.getInput();
   Printer.printInput(inputData);
 
   const hoover = new Hoover(inputData);
