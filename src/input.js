@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const axios = require('axios');
 
 const parseInput = (data) => {
   const roomD = data.shift().split(' ');
@@ -30,15 +31,27 @@ const parseInput = (data) => {
 
 // Read file in asynchronously (non-blocking)
 async function getInput() {
-  const fileData = await fs.readFile('input.txt', 'utf8', (err, f) => {
-    if (err) {
-      throw err;
-    }
-  });
+  const fileData = await axios
+    .get('https://ollyholly.github.io/assets/input.txt')
+    .then((res) => {
+      console.log('Got remote data!', res.data);
+      return res.data;
+    })
+    .catch((err) => console.log(err));
   const convertedData = fileData.toString().split('\n');
   const result = parseInput(convertedData);
   return result;
 }
+// async function getInput() {
+//   const fileData = await fs.readFile('input.txt', 'utf8', (err, f) => {
+//     if (err) {
+//       throw err;
+//     }
+//   });
+//   const convertedData = fileData.toString().split('\n');
+//   const result = parseInput(convertedData);
+//   return result;
+// }
 
 exports.getInput = getInput;
 exports.parseInput = parseInput;
